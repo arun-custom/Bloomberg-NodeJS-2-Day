@@ -89,7 +89,7 @@ wr.on("finish", function() {
 	- **Bonus:** Provide the user with a callback function that gets executed when the copy is complete.
 
 ##Simple User Manager Warmup
-- We will be building a user manager system using Node with MySQL.
+- We will be building a user manager system using Node with PostgresSQL.
 - First we will have to build the front end of the application and set up our routes to handle the display and input of user information.
 - Your task is to set up an application with three views - show all users, edit user, and add new user. Each of these views will be EJS templates.
 - Your application must have three separate GET routes to handle the display of each of these pages.
@@ -157,7 +157,7 @@ sequelize model:create --name User --attributes firstname:string,lastname:string
 ####Create
 
 ```javascript
-var pg = require("mysql");
+var pg = require("pg");
 var models = require("./models/index.js");
 
 models.User.create({
@@ -352,4 +352,17 @@ server.listen(3000);
 var gulp = require("gulp");
 
 var uglify = require("gulp-uglify");
+var concat = require("gulp-concat");
+var rename = require("gulp-rename");
+
+gulp.task("scripts", function() {
+	return gulp.src("js/*.js")
+		.pipe(concat("all.js"))
+		.pipe(gulp.dest("dist"))
+		.pipe(rename("all.min.js"))
+		.pipe(uglify())
+		.pipe(gulp.dest("dist"));
+});
+
+gulp.task("default", ["scripts"]);
 ```

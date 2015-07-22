@@ -1,5 +1,10 @@
 #Introduction to Node JS
 
+##Installation
+- Install [Node JS](http://nodejs.org/)
+- Install [Nodemon](https://github.com/remy/nodemon)
+- Install [Postgres.app](http://postgresapp.com/)
+
 ##JavaScript Runtime
 - Node operates on the V8 Google Chrome JavaScript runtime.
 - This runtime is what is responsible for interpreting the JavaScript and mapping it over to machine commands.
@@ -211,6 +216,35 @@ app.post("/user", function(req, res) {
 - Unlike GET requests, you can't access these parameters with `req.query`.
 - To access POST parameters you have to use the Node `body-parser` module, which takes the name attribute from the form data and uses it as POST data.
 - With this module you can simply use `req.body` as shown above.
+
+##PUT Operations
+
+- PUT is essentially the same as a POST request.
+- PUT requests are normally mapped over to update actions.
+- According to the convention, since PUT is mapped over to an update action, an ID needs to be passed to reference the data object.
+
+```
+var methodOverride = require("method-override");
+
+app.use(methodOverride("_method"));
+
+app.put("/user/:id", function(req, res) {
+	request({
+		method: "PUT",
+		uri: "http://daretodiscover.herokuapp.com/users/" + req.params.id,
+		formData: {
+			firstname: req.body.firstname,
+			lastname: req.body.lastname,
+			role: req.body.role,
+			username: req.body.username
+		}
+	}, function(error, response, body) {
+		res.redirect("/user");
+	});
+});
+```
+
+- Method override allows us to use the PUT verb in the HTML form, which is otherwise not supported.
 
 ##Wine API Exercise
 - In this exercise we will be building a wine manager system.
