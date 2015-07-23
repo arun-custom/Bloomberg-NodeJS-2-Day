@@ -91,8 +91,9 @@ wr.on("finish", function() {
 ##Simple User Manager Warmup
 - We will be building a user manager system using Node with PostgresSQL.
 - First we will have to build the front end of the application and set up our routes to handle the display and input of user information.
-- Your task is to set up an application with three views - show all users, edit user, and add new user. Each of these views will be EJS templates.
-- Your application must have three separate GET routes to handle the display of each of these pages.
+- Your task is to set up an application with two views - show all users and edit a user.
+- Each of these views will be EJS templates.
+- Your application must have two separate GET routes to handle the display of each of these pages.
 - The frontend is already done for you and can be found [here](user_manager_html/).
 
 ##Sequelize - Introduction to a Professional-Grade ORM
